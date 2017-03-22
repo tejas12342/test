@@ -1,5 +1,5 @@
 test:
 
         override
-                - pytest test_circleci.py
+                - pytest test_circleci.py --junitxml=test.xml 
                   
