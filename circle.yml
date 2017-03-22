@@ -8,5 +8,5 @@ test:
     - cat test1.xml
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/
-    - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/ \;
-    - cat ".*/target/surefire-reports/.*xml"
+    - find . -type f -regex "./test1.xml" -exec cp {} $CIRCLE_TEST_REPORTS/ \;
+    - cat "./test1.xml"
