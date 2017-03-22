@@ -4,8 +4,6 @@ dependencies:
 
 test:
   override:
-    - pytest test_circleci.py --junitxml=test1.xml
-  post:
-    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
-    - find . -type f -regex "./test1.xml"
-    - cat test1.xml
+    - mkdir -p junit/
+    - pytest test_circleci.py --junitxml=junit/test1.xml
+    - cat junit/test1.xml
