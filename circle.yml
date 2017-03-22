@@ -5,4 +5,6 @@ dependencies:
 test:
   override:
     - pytest test_circleci.py --junitxml=test.xml
-    - $CIRCLE_TEST_REPORTS/test.xml
+  post:
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
