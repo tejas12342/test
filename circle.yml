@@ -4,6 +4,5 @@ dependencies:
 
 test:
   override:
-    - mkdir -p junit/
-    - pytest test_circleci.py --junitxml=junit/test1.xml
-    - cat junit/test1.xml
+    - pytest test_circleci.py --junitxml=test1.xml
+    - cat test1.xml
