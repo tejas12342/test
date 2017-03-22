@@ -1,15 +1,15 @@
 sudo: false
 
-language: python
+language: pytest
 
 python:
   - 2.7
 
 install:
-  - pip install codecov
+  - pip install pytest
 
 script:
-  - coverage run tests.py
+  - coverage run pytest tests.py
 
 after_success:
   - codecov

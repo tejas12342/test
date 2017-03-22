@@ -1,10 +1,6 @@
-import unittest
+import pytest
 
-import awesome
 
-class TestMethods(unittest.TestCase):
-    def test_add(self):
-        self.assertEqual(awesome.smile(), ":)")
+def test_add():
+    assert 1 == 1
 
-if __name__ == '__main__':
-    unittest.main()
