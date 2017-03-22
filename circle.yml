@@ -4,7 +4,6 @@ stages:
   build:
     workDir: .
     steps:
-      - type: checkout
       - type: shell
         name: Install Project Dependencies
         command: pip install -U pytest
