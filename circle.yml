@@ -1,6 +1,6 @@
 dependencies:
   post:
-    - pytest ./install-packages
+    - pip install -U pytest
 
 test:
   override:
