@@ -2,4 +2,5 @@ test:
 
         override
                 - pytest test_circleci.py --junitxml=test.xml 
-                  
+                - mkdir -p $CIRCLE_TEST_REPORTS/junit
+                - cp _build/test/test-junit-report.xml $CIRCLE_TEST_REPORTS/junit
