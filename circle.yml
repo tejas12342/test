@@ -10,9 +10,8 @@ stages:
       - type: shell
         name: Run Tests
         command: |
-          mkdir -p ./build/
-          pytest test_circleci.py --junitxml=build/test1.xml
-          cat build/test1.xml
+          pytest test_circleci.py --junitxml=test1.xml
+          cat test1.xml
       - type: artifacts-store
         path: build/tests/phpspec
         destination: phpspec
