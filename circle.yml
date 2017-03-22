@@ -4,5 +4,5 @@ dependencies:
 
 test:
   override:
-    - pytest test_circleci.py --junitxml=test1.xml
+    - pytest tests.py --junitxml=test1.xml
     - cat test1.xml
