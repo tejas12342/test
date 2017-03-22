@@ -2,7 +2,7 @@ version: 2
 executorType: machine
 stages:
   build:
-    workDir: /var/www/html
+    workDir: .
     steps:
       - type: shell
         name: Install Project Dependencies
