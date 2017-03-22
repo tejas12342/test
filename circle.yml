@@ -1,6 +1,8 @@
 version: 2
+executorType: docker
 stages:
   build:
+    workDir: .
     steps:
       - type: checkout
       - type: shell
