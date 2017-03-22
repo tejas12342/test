@@ -1,15 +1,9 @@
-sudo: false
+dependencies:
+  post:
+    - pip install -U pytest
 
-language: pytest
-
-python:
-  - 2.7
-
-install:
-  - pip install pytest
-
-script:
-  - coverage run pytest tests.py
-
-after_success:
-  - codecov
+test:
+  override:
+    - mkdir -p junit/
+    - pytest test_circleci.py --junitxml=junit/test1.xml
+    - cat junit/test1.xml
