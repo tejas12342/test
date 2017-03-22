@@ -1,9 +1,41 @@
-dependencies:
-  post:
-    - pip install -U pytest
-
-test:
-  override:
-    - mkdir -p junit/
-    - pytest test_circleci.py --junitxml=junit/test1.xml
-    - cat junit/test1.xml
+version: 2
+executorType: docker
+containerInfo:
+  - image: culturekings/php-ci
+    env:
+      - APP_ENV=local
+      - APP_DEBUG=true
+stages:
+  build:
+    workDir: /var/www/html
+    steps:
+      - type: checkout
+      - type: shell
+        name: Install Project Dependencies
+        command: composer install -o --no-suggest --no-interaction --no-progress --prefer-dist
+      - type: shell
+        name: Run Tests
+        command: |
+          mkdir -p build/tests/phpspec
+          vendor/bin/phpspec run --format=junit > build/tests/phpspec/junit.xml
+          cat build/tests/phpspec/junit.xml
+      - type: artifacts-store
+        path: build/tests/phpspec
+        destination: phpspec
+      - type: shell
+        name: Run Coding Standards
+        command: |
+          mkdir -p build/tests/phpcs
+          vendor/bin/phpcs --config-set installed_paths vendor/culturekings/symfony2-coding-standard
+          vendor/bin/phpcs --report-junit=build/tests/phpcs/junit.xml
+          cat build/tests/phpcs/junit.xml
+      - type: artifacts-store
+        path: build/tests/phpcs
+        destination: phpcs
+      - type: shell
+        name: Update Code Coverage
+        command: |
+          mkdir -p build/logs
+          vendor/bin/coveralls -v -x coverage_clover.xml
+      - type: test-results-store
+        path: build/tests
